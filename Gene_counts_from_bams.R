@@ -13,18 +13,25 @@
 #' @return counts numeric matrix normalized by library size and feature length.
 #'
 
-gene_counts <- function(samples=sampleFile,
-                        bams=bamfiles,
-                        gtf=gtffile,
+gene_counts <- function(sampleTableFile='',
+                        filenames='',
+                        gtf='',
                         allowMultiOverlap=FALSE,
                         countMultiMappingReads=FALSE,
+                        fraction=FALSE,
                         isPairedEnd=TRUE,
-                        countMultiMappingReads=FALSE){
+                        minMQS=0,
+                        primaryOnly=FALSE,
+                        strandSpecific='stranded',
+                        nthreads='1',
+                        reportReads=FALSE,
+                        tmpDir=".",
+                        ){
   require("Rsamtools")
   require("Rsubread")
   
   #load sample table
-  sampleTable <- read.csv(samplefile,row.names=1, sep="\t")
+  sampleTable <- read.csv(sampleTableFile,row.names=1, sep="\t")
   
   #check if files exists
   file.exists(filenames)
@@ -39,11 +46,19 @@ gene_counts <- function(samples=sampleFile,
   #   - to handgle multiple mapping reads
   # ...
   fc <- featureCounts(files=filenames, 
-                      annot.ext=gtffile, 
+                      annot.ext=gtf, 
                       isGTFAnnotationFile=TRUE,
-                      isPairedEnd=isPairedEnd,
                       allowMultiOverlap=allowMultiOverlap,
-                      countMultiMappingReads=countMultiMappingReads)
+                      countMultiMappingReads=countMultiMappingReads,
+                      fraction=fraction,
+                      isPairedEnd=isPairedEnd,
+                      minMQS=minMQS,
+                      primaryOnly=primaryOnly,
+                      strandSpecific=strandSpecific,
+                      nthreads=nthreads,
+                      reportReads=reportReads,
+                      tmpDir=tmpDir,
+                      )
   
   colnames(fc$counts) <- row.names(sampleTable)
   
