@@ -15,7 +15,7 @@
 
 gene_counts <- function(samples=sampleFile,
                         bams=bamfiles,
-                        gtf=gtffile
+                        gtf=gtffile,
                         allowMultiOverlap=FALSE,
                         countMultiMappingReads=FALSE,
                         isPairedEnd=TRUE,
