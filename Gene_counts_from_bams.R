@@ -13,7 +13,13 @@
 #' @return counts numeric matrix normalized by library size and feature length.
 #'
 
-gene_counts <- function(samples=sampleFile,bams=bamfiles,gtf=gtffile){
+gene_counts <- function(samples=sampleFile,
+                        bams=bamfiles,
+                        gtf=gtffile
+                        allowMultiOverlap=FALSE,
+                        countMultiMappingReads=FALSE,
+                        isPairedEnd=TRUE,
+                        countMultiMappingReads=FALSE){
   require("Rsamtools")
   require("Rsubread")
   
@@ -35,7 +41,9 @@ gene_counts <- function(samples=sampleFile,bams=bamfiles,gtf=gtffile){
   fc <- featureCounts(files=filenames, 
                       annot.ext=gtffile, 
                       isGTFAnnotationFile=TRUE,
-                      isPairedEnd=TRUE)
+                      isPairedEnd=isPairedEnd,
+                      allowMultiOverlap=allowMultiOverlap,
+                      countMultiMappingReads=countMultiMappingReads)
   
   colnames(fc$counts) <- row.names(sampleTable)
   
