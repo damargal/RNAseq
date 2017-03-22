@@ -40,10 +40,6 @@ gene_counts <- function(sampleTableFile='',
   seqinfo(bamfiles[1])
   
   #create a matrix with read/fragment counts assigned to each gene
-  #TODO: to include more options for counting reads, such as:
-  #   - library specificity
-  #   - to handgle multiple mapping reads
-  # ...
   fc <- featureCounts(files=filenames, 
                       annot.ext=gtf, 
                       isGTFAnnotationFile=TRUE,
