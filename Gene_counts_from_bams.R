@@ -6,10 +6,12 @@
 #' 
 #'    RNA-seq workflow - gene-level exploratory analysis and differential expression
 #'    https://www.bioconductor.org/help/course-materials/2016/CSAMA/lab-3-rnaseq/rnaseq_gene_CSAMA2016.html#summarizing-an-rna-seq-experiment-as-a-count-matrix
-#'    
+#'  
+#' required params:
 #' @param sampleFile A vector with the path to the file with a table (tab-separated) sample information 
 #' @param filenames A vector with the paths to bam files
 #' @param gtf A verctor with the path to the annotation file
+#' 
 #' @return counts numeric matrix normalized by library size and feature length.
 #'
 
