@@ -25,7 +25,12 @@ gene_counts <- function(sampleTableFile='',
                         strandSpecific='stranded',
                         nthreads='1',
                         reportReads=FALSE,
-                        tmpDir="."){
+                        tmpDir=".", 
+                        requireBothEndsMapped=FALSE,
+                        checkFragLength=FALSE,
+                        minFragLength=50,
+                        maxFragLength=600,
+                        ignoreDup=FALSE){
   require("Rsamtools")
   require("Rsubread")
   
@@ -51,7 +56,12 @@ gene_counts <- function(sampleTableFile='',
                       strandSpecific=strandSpecific,
                       nthreads=nthreads,
                       reportReads=reportReads,
-                      tmpDir=tmpDir)
+                      tmpDir=tmpDir,
+                      requireBothEndsMapped=requireBothEndsMapped,
+                      checkFragLength=checkFragLength,
+                      minFragLength=minFragLength,
+                      maxFragLength=maxFragLength,
+                      ignoreDup=ignoreDup)
   
   colnames(fc$counts) <- row.names(sampleTable)
   
