@@ -1,5 +1,7 @@
 #' Convert counts to transcripts per million (TPM).
 #' 
+#' from Kamil Slowikowski
+#' 
 #' Convert a numeric matrix of features (rows) and conditions (columns) with
 #' raw feature counts to transcripts per million.
 #' 
